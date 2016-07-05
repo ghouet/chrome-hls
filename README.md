@@ -7,6 +7,8 @@ Allows HLS playback in chrome browser
 1. Install extension from [webstore][]
 2. Click on any m3u8 link inside chrome to play it directly in a new tab
 
+The extension can be disabled by clicking on the icon if the request filter on m3u8 links is too disruptive.
+
 [webstore]: https://chrome.google.com/webstore/detail/native-hls-playback/emnphkkblegpebimobpbekeedfgemhof
 
 # Some Developer Notes 
