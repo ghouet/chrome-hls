@@ -1,4 +1,3 @@
-
 function playM3u8(url){
   if(Hls.isSupported()) {
       var video = document.getElementById('video');
@@ -13,4 +12,4 @@ function playM3u8(url){
     }
 }
 
-playM3u8(window.location.href.split("#")[1])
+playM3u8(window.location.href.split("#")[1]);

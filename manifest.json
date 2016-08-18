@@ -1,6 +1,6 @@
 {
   "name": "Native HLS Playback",
-  "version": "0.4.4",
+  "version": "0.4.5",
   "description": "Allow chrome to play HLS urls in-browser",
   "manifest_version": 2,
   "icons": { "128": "icon128.png" },
