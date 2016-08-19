@@ -98,12 +98,12 @@ aspectButton.addEventListener('click', function (event) {
     }
  });
 
-$('video1').mousemove(function(){
+$('video').mousemove(function(){
   $('#video-controls').show();
   $('#video-controls').delay(3600).fadeOut();
 });
 
-$('video1').hover(function(){
+$('video').hover(function(){
   $('#video-controls').show();
   $('#video-controls').delay(3600).fadeOut();
 },function(){
