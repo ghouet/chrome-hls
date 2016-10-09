@@ -1,7 +1,11 @@
 function playM3u8(url){
   if(Hls.isSupported()) {
       var video = document.getElementById('video');
-      var hls = new Hls();
+      var config = {
+        debug: true
+      };
+
+  var hls = new Hls(config);
       var m3u8Url = decodeURIComponent(url)
       hls.loadSource(m3u8Url);
       hls.attachMedia(video);

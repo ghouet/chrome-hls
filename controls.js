@@ -59,7 +59,18 @@ muteButton.addEventListener("click", function() {
 });
 
 fullScreenButton.addEventListener("click", function() {
-  video.webkitRequestFullscreen();
+  if (video.requestFullscreen) {
+    video.requestFullscreen();
+  }
+  else if (video.mozRequestFullScreen) {
+      video.mozRequestFullScreen();
+  }
+  else if (video.webkitRequestFullScreen) {
+      video.webkitRequestFullScreen();
+  }
+  else if (video.msRequestFullscreen) {
+      video.msRequestFullscreen();
+  }
 });
 
 seekBar.addEventListener("change", function() {
