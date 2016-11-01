@@ -21,6 +21,7 @@ var playButton = document.getElementById("play-pause");
 var muteButton = document.getElementById("mute");
 var fullScreenButton = document.getElementById("full-screen");
 var aspectButton = document.getElementById("aspect");
+var reportButton = document.getElementById("report");
 
 // Sliders
 var seekBar = document.getElementById("seek-bar");
@@ -119,4 +120,13 @@ $(document).hover(function(){
   $('#video-controls').delay(3600).fadeOut();
 },function(){
   $('#video-controls').fadeOut();
+});
+
+reportButton.addEventListener("click", function() {
+  var body = "Error playing " + hls.url + "\n Player logs: \n";
+  for (var i in logs) {
+    body += logs[i] + "\n";
+  }
+  var url = "https://github.com/gramk/chrome-hls/issues/new?body="+body+"&title=Playback Issue: "+hls.url;
+  chrome.tabs.create({url:url});
 });

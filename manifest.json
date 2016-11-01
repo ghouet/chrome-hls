@@ -13,6 +13,7 @@
   ],
   "browser_action": {
       "default_title": "Disable",
-      "default_icon": "icon128.png"
+      "default_icon": "icon128.png",
+      "default_popup": "popup.html"
   }
 }

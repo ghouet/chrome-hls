@@ -125,6 +125,12 @@ body{
   height:35px;
   width:35px;
 }
+#report{
+  background: url("img/report.png") no-repeat;
+  background-position: center;
+  height:35px;
+  width:35px;
+}
 
 button{
   background-color: Transparent;
