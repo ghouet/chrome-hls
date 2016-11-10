@@ -1,14 +1,18 @@
-var btn = document.getElementById('btnUpdate');
-btn.addEventListener('click', updateState);
+var btnUpdate = document.getElementById('btnUpdate');
+btnUpdate.addEventListener('click', updateState);
 chrome.runtime.sendMessage("getState", function(enabled){
- 	enabled ? btn.innerHTML = "Disable" : btn.innerHTML = "Enable";
+ 	enabled ? btnUpdate.innerHTML = "Disable" : btnUpdate.innerHTML = "Enable";
 });
 function updateState() {
-  chrome.runtime.sendMessage(btn.innerHTML);
-  if (btn.innerHTML == "Enable") {
-  	btn.innerHTML = "Disable"
+  chrome.runtime.sendMessage(btnUpdate.innerHTML);
+  if (btnUpdate.innerHTML == "Enable") {
+  	btnUpdate.innerHTML = "Disable"
   } else {
-  	btn.innerHTML = "Enable"
+  	btnUpdate.innerHTML = "Enable"
   }
   window.close();
 }
+
+document.getElementById('btnSettings').addEventListener('click', function(){
+	chrome.runtime.openOptionsPage();
+});

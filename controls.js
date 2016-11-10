@@ -121,12 +121,3 @@ $(document).hover(function(){
 },function(){
   $('#video-controls').fadeOut();
 });
-
-reportButton.addEventListener("click", function() {
-  var body = "Error playing " + hls.url + "\n Player logs: \n";
-  for (var i in logs) {
-    body += logs[i] + "\n";
-  }
-  var url = "https://github.com/gramk/chrome-hls/issues/new?body="+body+"&title=Playback Issue: "+hls.url;
-  chrome.tabs.create({url:url});
-});

@@ -15,7 +15,7 @@ chrome.webRequest.onBeforeRequest.addListener(
   function(info) {
     if (enabled && info.url.split("?")[0].split("#")[0].endsWith("m3u8")) {
       chrome.tabs.update(info.tabId, {url: chrome.extension.getURL('player.html') + "#" + info.url});
-      return {cancel: true};
+      return {cancel: true}
     }
   },
   {urls: ["*://*/*.m3u8*"], types:["main_frame"]},
