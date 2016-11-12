@@ -110,14 +110,22 @@ aspectButton.addEventListener('click', function (event) {
     }
  });
 
+var controlsEnabled = true;
+
 $(document).mousemove(function(){
-  $('#video-controls').show();
-  $('#video-controls').delay(3600).fadeOut();
+  if(controlsEnabled){
+    $('#video-controls').show();
+    $('#video-controls').delay(3600).fadeOut();
+  }
 });
 
 $(document).hover(function(){
-  $('#video-controls').show();
-  $('#video-controls').delay(3600).fadeOut();
+  if(controlsEnabled){
+    $('#video-controls').show();
+    $('#video-controls').delay(3600).fadeOut();
+  }
 },function(){
-  $('#video-controls').fadeOut();
+  if(controlsEnabled){
+    $('#video-controls').fadeOut();
+  }
 });

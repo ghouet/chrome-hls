@@ -19,7 +19,6 @@ chrome.webRequest.onBeforeRequest.addListener(
         chrome.tabs.update(info.tabId, {url: playerUrl});
         return {cancel: true}
       } else {
-        console.log("chrome")
         return { redirectUrl:  playerUrl }
       }
     }

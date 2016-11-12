@@ -61,7 +61,12 @@ chrome.storage.sync.get({
   debug = settings.debug;
   var s = document.createElement('script');
   s.src = chrome.extension.getURL('hls.'+settings.hlsjs+'.min.js');
-  s.onload = function() { playM3u8(window.location.href.split("#")[1]); };
+  s.onload = function() { 
+    //playM3u8(window.location.href.split("#")[1]); 
+    var mediaUrl = window.location.href.split("#")[1];
+    castPlayer.loadMedia(mediaUrl)
+    castPlayer.playMediaLocally();
+  };
   (document.head || document.documentElement).appendChild(s);
 });
 

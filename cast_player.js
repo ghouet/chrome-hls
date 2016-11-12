@@ -56,13 +56,15 @@ var CastPlayer = function() {
 
   this.initializeCastPlayer();
   this.initializeLocalPlayer();
+
+  this.mediaUrl = null;
 };
 
 /**
  * Initialize local media player 
  */
 CastPlayer.prototype.initializeLocalPlayer = function() {
-  this.localPlayer = document.getElementById('video_element');
+  this.localPlayer = document.getElementById('video');
   this.localPlayer.addEventListener('loadeddata', this.onMediaLoadedLocally.bind(this));
 };
 
@@ -131,7 +133,7 @@ CastPlayer.prototype.sessionListener = function(e) {
       this.onMediaDiscovered('activeSession', this.session.media[0]);
     }
     else {
-      this.loadMedia(mediaUrl);
+      this.loadMedia(this.mediaUrl);
     }
     this.session.addUpdateListener(this.sessionUpdateListener.bind(this));
   }
@@ -196,7 +198,7 @@ CastPlayer.prototype.onRequestSessionSuccess = function(e) {
   this.session = e;
   this.deviceState = DEVICE_STATE.ACTIVE;
   this.updateMediaControlUI();
-  this.loadMedia(mediaUrl);
+  this.loadMedia(this.mediaUrl);
   this.session.addUpdateListener(this.sessionUpdateListener.bind(this));
 };
 
@@ -238,6 +240,7 @@ CastPlayer.prototype.onStopAppSuccess = function(message) {
  * @param {Number} mediaIndex An index number to indicate current media content
  */
 CastPlayer.prototype.loadMedia = function(url) {
+  this.mediaUrl = url;
   if (!this.session) {
     //console.log("no session");
     return;
@@ -257,7 +260,7 @@ CastPlayer.prototype.loadMedia = function(url) {
     request.currentTime = this.localPlayer.currentTime;
     this.localPlayer.pause();
     this.localPlayerState = PLAYER_STATE.STOPPED;
-    this.localPlayer.removeAttribute("controls")
+    controlsEnabled = false;
   }
   else {
     request.currentTime = 0;
@@ -332,18 +335,7 @@ CastPlayer.prototype.playMediaLocally = function() {
   
   this.localPlayer.style.display = 'block';
   if( this.localPlayerState != PLAYER_STATE.PLAYING && this.localPlayerState != PLAYER_STATE.PAUSED ) { 
-    if(Hls.isSupported()) {
-      var video = document.getElementById('video_element');
-      var hls = new Hls();
-      video.src = mediaUrl
-      var m3u8Url = decodeURIComponent(mediaUrl)
-      hls.loadSource(m3u8Url);
-      hls.attachMedia(video);
-      hls.on(Hls.Events.MANIFEST_PARSED,function() {
-        video.play();
-      });
-      document.title = mediaUrl
-    }
+    playM3u8(window.location.href.split("#")[1]); 
   }
   else {
     this.localPlayer.play();
@@ -357,7 +349,7 @@ CastPlayer.prototype.playMediaLocally = function() {
  */
 CastPlayer.prototype.onMediaLoadedLocally = function() {
   this.localPlayer.play();
-  this.localPlayer.setAttribute("controls","")
+  controlsEnabled = true;
 };
 
 /**
@@ -419,19 +411,24 @@ CastPlayer.prototype.updateMediaControlUI = function() {
       break;
   }
 
+  var castBtn = document.getElementById("cast");
   if( !this.receivers_available ) {
-    document.getElementById("casticonactive").style.display = 'none';
-    document.getElementById("casticonidle").style.display = 'none';
+    castBtn.style.display = 'none';
     return;
   }
 
   if( this.deviceState == DEVICE_STATE.ACTIVE ) {
-    document.getElementById("casticonactive").style.display = 'block';
-    document.getElementById("casticonidle").style.display = 'none';
+    controlsEnabled = false;
+    this.localPlayer.pause();
+    castBtn.style.display = 'block';
+    castBtn.classList.add("cast-on");
+    castBtn.classList.remove("cast-off");
   }
   else {
-    document.getElementById("casticonidle").style.display = 'block';
-    document.getElementById("casticonactive").style.display = 'none';
+    controlsEnabled = true;
+    castBtn.style.display = 'block';
+    castBtn.classList.add("cast-off");
+    castBtn.classList.remove("cast-on");
   }
 }
 
@@ -440,14 +437,10 @@ CastPlayer.prototype.updateMediaControlUI = function() {
  */
 CastPlayer.prototype.initializeUI = function() {
   // add event handlers to UI components
-  document.getElementById("casticonidle").addEventListener('click', this.launchApp.bind(this));
-  document.getElementById("casticonactive").addEventListener('click', this.launchApp.bind(this));
+  document.getElementById("cast").addEventListener('click', this.launchApp.bind(this));
 };
  window.CastPlayer = CastPlayer;
 })();
 
 
 var castPlayer = new CastPlayer();
-var mediaUrl = window.location.href.split("#")[1]
-castPlayer.loadMedia(mediaUrl)
-castPlayer.playMediaLocally();

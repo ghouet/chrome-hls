@@ -34,6 +34,7 @@ body{
 	flex-direction: row;
 	align-items: center;
 }
+
 #play-pause{
 	display: flex;
   position: absolute;
@@ -85,6 +86,9 @@ body{
   height:35px;
   width:35px;
 }
+#cast{
+  display: none;
+}
 .zoom-out{
   background: url("img/zoom_out.png") no-repeat;
   background-position: center;
@@ -99,6 +103,7 @@ body{
 }
 
 
+
 .volume-on{
   background: url("img/volume_on.png") no-repeat;
   background-position: center;
@@ -111,8 +116,6 @@ body{
   height:35px;
   width:35px;
 }
-
-
 .play{
   background: url("img/play.png") no-repeat;
   background-position: center;
@@ -125,11 +128,19 @@ body{
   height:35px;
   width:35px;
 }
-#report{
-  background: url("img/report.png") no-repeat;
+.cast-on {
+  display: flex;
+  background:url('img/cast_on.png') no-repeat;
   background-position: center;
-  height:35px;
-  width:35px;
+  width: 35px;
+  height: 35px;
+}
+.cast-off {
+  display: flex;
+  background:url('img/cast_off.png') no-repeat;
+  background-position: center;
+  width: 35px;
+  height: 35px;
 }
 
 button{
