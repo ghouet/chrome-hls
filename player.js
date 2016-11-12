@@ -55,7 +55,7 @@ function playM3u8(url){
 }
 
 chrome.storage.sync.get({
-  hlsjs: "0.5.51",
+  hlsjs: "0.5.52",
   debug: false
 }, function(settings) {
   debug = settings.debug;
