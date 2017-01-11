@@ -1,6 +1,6 @@
 {
   "name": "Native HLS Playback",
-  "version": "0.6.12",
+  "version": "0.6.17",
   "description": "Allow the browser to play HLS video urls (m3u8) 'natively'",
   "manifest_version": 2,
   "icons": { "128": "icon128.png" },
@@ -26,7 +26,7 @@
     "hls.0.5.52.min.js",
     "hls.0.6.8.min.js",
     "hls.0.6.9.min.js",
-    "hls.0.6.12.min.js",
+    "hls.0.6.17.min.js",
     "*.html"
   ]
 }
