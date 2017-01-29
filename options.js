@@ -16,7 +16,7 @@ function save_options() {
 
 function restore_options() {
   chrome.storage.sync.get({
-    hlsjs: "0.6.17",
+    hlsjs: "0.6.19",
     debug: false
   }, function(items) {
     document.getElementById('hlsjsSel').value = items.hlsjs;
