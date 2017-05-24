@@ -26,11 +26,11 @@ function handleMediaError(hls) {
 function playM3u8(url){
   var video = document.getElementById('video');
   if(native){
-    video.classList.remove("native_mode");
-    video.classList.add("zoomed_mode");
-  } else {
     video.classList.add("native_mode");
     video.classList.remove("zoomed_mode");
+  } else {
+    video.classList.remove("native_mode");
+    video.classList.add("zoomed_mode");
   }
   if(hls){ hls.destroy(); }
   hls = new Hls({debug:debug});
@@ -62,7 +62,7 @@ function playM3u8(url){
 }
 
 chrome.storage.sync.get({
-  hlsjs: "0.6.21",
+  hlsjs: "0.7.8",
   debug: false,
   native: false
 }, function(settings) {
