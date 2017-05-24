@@ -2,9 +2,11 @@
 function save_options() {
   var v = document.getElementById('hlsjsSel').value;
   var dbg = document.getElementById('cbDebug').checked;
+  var ntv = document.getElementById('cbNative').checked;
   chrome.storage.sync.set({
     hlsjs: v,
-    debug: dbg
+    debug: dbg,
+    native: ntv
   }, function() {
     var status = document.getElementById('status');
     status.textContent = 'Options saved.';
@@ -16,11 +18,13 @@ function save_options() {
 
 function restore_options() {
   chrome.storage.sync.get({
-    hlsjs: "0.6.21",
-    debug: false
+    hlsjs: "0.7.8",
+    debug: false,
+    native: false
   }, function(items) {
     document.getElementById('hlsjsSel').value = items.hlsjs;
     document.getElementById('cbDebug').checked = items.debug;
+    document.getElementById('cbNative').checked = items.native;
   });
 }
 

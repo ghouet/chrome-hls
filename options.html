@@ -5,10 +5,11 @@
 		<style>body: { padding: 10px; }</style>
 	</head>
 	<body>
-
+		<p>
 		<label for="cbDebug">
 			hls.js version:  
 			<select id="hlsjsSel">
+		     	<option>0.7.8</option>
 		     	<option>0.7.4</option>
 		     	<option>0.7.3</option>
 		     	<option>0.6.21</option>
@@ -17,17 +18,24 @@
 		     	<option>0.5.52</option>
 			</select>
 		 </label>
-		 <br/>
-		 <br/>
+		 </p>
+		 <p>
 		 <label for="cbDebug">
-		 	hls.js debug :
+		 	hls.js debug:
 			<input type="checkbox" id="cbDebug">
 		 </label>
-		 <br/>
-		 <br/>
+		 </p>
+		 <p>
+		 <label for="cbNative">
+		 	Maintain original video size:
+			<input type="checkbox" id="cbNative">
+		 </label>
+		 </p>
 		<button id="saveSettings">Save</button>
 		<span id="status"></span>
-	  	<script src="options.js"></script>
   	</body>
+
+
+	<script src="options.js"></script>
 </html>
 
