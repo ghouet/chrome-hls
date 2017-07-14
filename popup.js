@@ -21,7 +21,7 @@ document.getElementById('btnPlayHlS').addEventListener('click', play_videos);
 
 function play_videos(){
   chrome.tabs.executeScript(null, {
-      file: 'hls.0.7.8.min.js'
+      file: 'hls.0.7.10.min.js'
   }, function() {
       chrome.tabs.executeScript(null, {file: 'embedded_videos.js'});
       window.close();

@@ -1,3 +1,4 @@
+var current_version = "0.7.10"
 
 function save_options() {
   var v = document.getElementById('hlsjsSel').value;
@@ -18,7 +19,7 @@ function save_options() {
 
 function restore_options() {
   chrome.storage.sync.get({
-    hlsjs: "0.7.8",
+    hlsjs: current_version,
     debug: false,
     native: false
   }, function(items) {

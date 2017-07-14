@@ -1,6 +1,7 @@
 var hls;
 var debug;
-
+var currentVersion = "0.7.10";
+var supportedVersions = ["0.5.52", "0.6.21","0.7.3","0.7.4", "0.7.7", "0.7.8", "0.7.9", "0.7.10"]
 var recoverDecodingErrorDate,recoverSwapAudioCodecDate;
 function handleMediaError(hls) {
   var now = performance.now();
@@ -62,14 +63,18 @@ function playM3u8(url){
 }
 
 chrome.storage.sync.get({
-  hlsjs: "0.7.8",
+  hlsjs: currentVersion,
   debug: false,
   native: false
 }, function(settings) {
   debug = settings.debug;
   native = settings.native;
   var s = document.createElement('script');
-  s.src = chrome.extension.getURL('hls.'+settings.hlsjs+'.min.js');
+  var version = currentVersion
+  if (supportedVersions.includes(settings.hlsjs)) {
+    version = settings.hlsjs
+  }
+  s.src = chrome.extension.getURL('hls.'+version+'.min.js');
   s.onload = function() { playM3u8(window.location.href.split("#")[1]); };
   (document.head || document.documentElement).appendChild(s);
 });
