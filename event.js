@@ -1,6 +1,6 @@
 var enabled = true;
 
-chrome.extension.onMessage.addListener(
+chrome.runtime.onMessage.addListener(
     function(request, sender, sendResponse){ 
       if (request == "getState") {
         sendResponse(enabled);
@@ -14,12 +14,11 @@ chrome.extension.onMessage.addListener(
 chrome.webRequest.onBeforeRequest.addListener(	
   function(info) {
     if (enabled && info.url.split("?")[0].split("#")[0].endsWith("m3u8")) {
-      var playerUrl = chrome.extension.getURL('player.html') + "#" + info.url
+      var playerUrl = chrome.runtime.getURL('player.html') + "#" + info.url
       if(navigator.userAgent.toLowerCase().indexOf('firefox') > -1){
         chrome.tabs.update(info.tabId, {url: playerUrl});
         return {cancel: true}
       } else {
-        console.log("chrome")
         return { redirectUrl:  playerUrl }
       }
     }

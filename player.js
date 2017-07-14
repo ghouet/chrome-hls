@@ -62,7 +62,7 @@ function playM3u8(url){
   document.title = url
 }
 
-chrome.storage.sync.get({
+chrome.storage.local.get({
   hlsjs: currentVersion,
   debug: false,
   native: false
@@ -74,7 +74,7 @@ chrome.storage.sync.get({
   if (supportedVersions.includes(settings.hlsjs)) {
     version = settings.hlsjs
   }
-  s.src = chrome.extension.getURL('hls.'+version+'.min.js');
+  s.src = chrome.runtime.getURL('hls.'+version+'.min.js');
   s.onload = function() { playM3u8(window.location.href.split("#")[1]); };
   (document.head || document.documentElement).appendChild(s);
 });

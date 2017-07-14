@@ -4,7 +4,7 @@ function save_options() {
   var v = document.getElementById('hlsjsSel').value;
   var dbg = document.getElementById('cbDebug').checked;
   var ntv = document.getElementById('cbNative').checked;
-  chrome.storage.sync.set({
+  chrome.storage.local.set({
     hlsjs: v,
     debug: dbg,
     native: ntv
@@ -18,7 +18,7 @@ function save_options() {
 }
 
 function restore_options() {
-  chrome.storage.sync.get({
+  chrome.storage.local.get({
     hlsjs: current_version,
     debug: false,
     native: false
