@@ -1,4 +1,4 @@
-var current_version = "0.7.10"
+var current_version = "0.8.2"
 
 function save_options() {
   var v = document.getElementById('hlsjsSel').value;
