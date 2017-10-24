@@ -1,7 +1,7 @@
 var hls;
 var debug;
-var currentVersion = "0.8.2";
-var supportedVersions = ["0.5.52", "0.6.21","0.7.3","0.7.4", "0.7.7", "0.7.8", "0.7.9", "0.7.10", "0.8.0", "0.8.1", "0.8.2"]
+var currentVersion = "0.8.5";
+var supportedVersions = ["0.5.52", "0.6.21","0.7.3","0.7.4", "0.7.7", "0.7.8", "0.7.9", "0.7.10", "0.8.0", "0.8.1", "0.8.2", "0.8.5"]
 var recoverDecodingErrorDate,recoverSwapAudioCodecDate;
 function handleMediaError(hls) {
   var now = performance.now();
