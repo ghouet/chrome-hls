@@ -1,10 +1,11 @@
 {
   "name": "Native HLS Playback",
-  "version": "0.8.5",
+  "version": "0.8.9",
   "description": "Allow the browser to play HLS video urls (m3u8) 'natively'",
   "manifest_version": 2,
   "icons": { "128": "icon128.png" },
   "background": { "scripts": [ "event.js"] },
+  "content_security_policy": "script-src 'self' https://cdn.jsdelivr.net blob:; object-src 'self'",
   "permissions": [
     "tabs",
     "*://*/*.m3u8*",
@@ -25,4 +26,5 @@
     "*.js",
     "*.html"
   ]
+
 }
