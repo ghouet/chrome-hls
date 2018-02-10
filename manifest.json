@@ -25,6 +25,6 @@
   "web_accessible_resources": [
     "*.js",
     "*.html"
-  ]
-
+  ],
+  "omnibox": { "keyword" : "m3u8" }
 }

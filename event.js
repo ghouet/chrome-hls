@@ -26,3 +26,10 @@ chrome.webRequest.onBeforeRequest.addListener(
   {urls: ["*://*/*.m3u8*"], types:["main_frame"]},
   ["blocking"]
 );
+
+chrome.omnibox.onInputEntered.addListener(function (input){
+    var playerUrl = chrome.runtime.getURL('player.html') + "#" + input;
+    chrome.tabs.query({ currentWindow: true, active: true }, function (tabs) {
+      chrome.tabs.update(tabs[0].id, {url: playerUrl});
+    });
+});
