@@ -19,10 +19,6 @@ If that's the case, it opens a new tab on a video player that uses the [hlsjs][]
 
 [hlsjs]: https://github.com/dailymotion/hls.js
 
-# TODOs
-
-1. Play video element with an m3u8 source using hlsjs
-
 #License
 Released under [Apache 2.0 License](LICENSE)
 

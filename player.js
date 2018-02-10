@@ -1,8 +1,7 @@
 var hls;
 var debug;
-var currentVersion = "0.8.9";
-var supportedVersions = ["0.5.52", "0.6.21","0.7.3","0.7.4", "0.7.7", "0.7.8", "0.7.9", "0.7.10", "0.8.0", "0.8.1", "0.8.2", "0.8.5", "0.8.9"]
 var recoverDecodingErrorDate,recoverSwapAudioCodecDate;
+
 function handleMediaError(hls) {
   var now = performance.now();
   if(!recoverDecodingErrorDate || (now - recoverDecodingErrorDate) > 3000) {
@@ -74,7 +73,7 @@ chrome.storage.local.get({
   if (supportedVersions.includes(settings.hlsjs)) {
     version = settings.hlsjs
   }
-  s.src = chrome.runtime.getURL('hls.'+version+'.min.js');
+  s.src = chrome.runtime.getURL('hlsjs/hls.'+version+'.min.js');
   s.onload = function() { playM3u8(window.location.href.split("#")[1]); };
   (document.head || document.documentElement).appendChild(s);
 });

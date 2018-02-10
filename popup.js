@@ -1,5 +1,3 @@
-var current_version = "0.8.5"
-
 var btnUpdate = document.getElementById('btnUpdate');
 btnUpdate.addEventListener('click', updateState);
 chrome.runtime.sendMessage("getState", function(enabled){

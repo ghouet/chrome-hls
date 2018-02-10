@@ -6,7 +6,7 @@ chrome.runtime.onMessage.addListener(
         sendResponse(enabled);
       } else {
         enabled = request == "Enable";
-        enabled ? chrome.browserAction.setIcon({path:"icon128.png"}) : chrome.browserAction.setIcon({path:"icon128grey.png"})
+        enabled ? chrome.browserAction.setIcon({path:"img/icon128.png"}) : chrome.browserAction.setIcon({path:"img/icon128grey.png"})
       }
     }
 );

@@ -3,9 +3,9 @@
   "version": "0.8.9",
   "description": "Allow the browser to play HLS video urls (m3u8) 'natively'",
   "manifest_version": 2,
-  "icons": { "128": "icon128.png" },
-  "background": { "scripts": [ "event.js"] },
-  "content_security_policy": "script-src 'self' https://cdn.jsdelivr.net blob:; object-src 'self'",
+  "icons": { "128": "img/icon128.png" },
+  "background": { "scripts": [ "event.js", "global.js"] },
+  "content_security_policy": "script-src 'self' blob:; object-src 'self'",
   "permissions": [
     "tabs",
     "*://*/*.m3u8*",
@@ -19,7 +19,7 @@
   },
   "browser_action": {
       "default_title": "Disable",
-      "default_icon": "icon128.png",
+      "default_icon": "img/icon128.png",
       "default_popup": "popup.html"
   },
   "web_accessible_resources": [

@@ -1,5 +1,3 @@
-var current_version = "0.8.9"
-
 function save_options() {
   var v = document.getElementById('hlsjsSel').value;
   var dbg = document.getElementById('cbDebug').checked;
@@ -31,3 +29,9 @@ function restore_options() {
 
 document.addEventListener('DOMContentLoaded', restore_options);
 document.getElementById('saveSettings').addEventListener('click', save_options);
+
+for (var i in supportedVersions) {
+  var opt = document.createElement("option");
+  opt.innerHTML = supportedVersions[i];
+  document.getElementById('hlsjsSel').appendChild(opt)
+}
