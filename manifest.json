@@ -1,6 +1,6 @@
 {
   "name": "Native HLS Playback",
-  "version": "0.8.9",
+  "version": "0.9.1",
   "description": "Allow the browser to play HLS video urls (m3u8) 'natively'",
   "manifest_version": 2,
   "icons": { "128": "img/icon128.png" },
