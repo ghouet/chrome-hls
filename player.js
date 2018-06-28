@@ -1,6 +1,7 @@
 var hls;
 var debug;
 var recoverDecodingErrorDate,recoverSwapAudioCodecDate;
+var pendingTimedMetadata = [];
 
 function handleMediaError(hls) {
   var now = performance.now();
@@ -21,6 +22,23 @@ function handleMediaError(hls) {
       console.error(msg);
     }
   }
+}
+
+function handleTimedMetadata(event, data) {
+  for (var i = 0; i < data.samples.length; i++) {
+    var pts = data.samples[i].pts;
+    var str =  new TextDecoder('utf-8').decode(data.samples[i].data.subarray(22));
+    pendingTimedMetadata.push({pts: pts, value: str});
+  }
+}
+
+function timeUpdateCallback() {
+  if (pendingTimedMetadata.length == 0 || pendingTimedMetadata[0].pts > video.currentTime) {
+    return;
+  }
+  var e = pendingTimedMetadata[0];
+  pendingTimedMetadata = pendingTimedMetadata.slice(1);
+  console.log('Metadata ' + e.value + " at " + e.pts + "s");
 }
 
 function playM3u8(url){
@@ -55,9 +73,11 @@ function playM3u8(url){
   var m3u8Url = decodeURIComponent(url)
   hls.loadSource(m3u8Url);
   hls.attachMedia(video);
+  video.ontimeupdate = timeUpdateCallback;
   hls.on(Hls.Events.MANIFEST_PARSED,function() {
     video.play();
   });
+  hls.on(Hls.Events.FRAG_PARSING_METADATA, handleTimedMetadata);
   document.title = url
 }
 

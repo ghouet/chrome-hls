@@ -5,7 +5,7 @@ function save_options() {
   chrome.storage.local.set({
     hlsjs: v,
     debug: dbg,
-    native: ntv
+    native_video: ntv
   }, function() {
     var status = document.getElementById('status');
     status.textContent = 'Options saved.';
@@ -17,13 +17,13 @@ function save_options() {
 
 function restore_options() {
   chrome.storage.local.get({
-    hlsjs: current_version,
+    hlsjs: currentVersion,
     debug: false,
-    native: false
+    native_video: false
   }, function(items) {
     document.getElementById('hlsjsSel').value = items.hlsjs;
     document.getElementById('cbDebug').checked = items.debug;
-    document.getElementById('cbNative').checked = items.native;
+    document.getElementById('cbNative').checked = items.native_video;
   });
 }
 
