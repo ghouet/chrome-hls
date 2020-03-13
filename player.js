@@ -1,5 +1,5 @@
 var hls;
-var debug;
+var debug, enableWorker;
 var recoverDecodingErrorDate,recoverSwapAudioCodecDate;
 var pendingTimedMetadata = [];
 
@@ -51,7 +51,7 @@ function playM3u8(url){
     video.classList.add("zoomed_mode");
   }
   if(hls){ hls.destroy(); }
-  hls = new Hls({debug:debug});
+  hls = new Hls({debug:debug, enableWorker: enableWorker});
   hls.on(Hls.Events.ERROR, function(event,data) {
     var  msg = "Player error: " + data.type + " - " + data.details;
     console.error(msg);
@@ -84,9 +84,11 @@ function playM3u8(url){
 chrome.storage.local.get({
   hlsjs: currentVersion,
   debug: false,
+  enableWorker: true,
   native: false
 }, function(settings) {
   debug = settings.debug;
+  enableWorker = settings.enableWorker;
   native = settings.native;
   var s = document.createElement('script');
   var version = currentVersion
