@@ -51,7 +51,18 @@ function playM3u8(url){
     video.classList.add("zoomed_mode");
   }
   if(hls){ hls.destroy(); }
-  hls = new Hls({debug:debug});
+  var config = {
+    debug:debug,  
+    xhrSetup: function (xhr, url) {
+      xhr.withCredentials = true; // do send cookies
+    },
+    fetchSetup: function (context, initParams) {
+      // Always send cookies, even for cross-origin calls.
+      initParams.credentials = 'include';
+      return new Request(context.url, initParams);
+    },
+  }
+  hls = new Hls(config);
   hls.on(Hls.Events.ERROR, function(event,data) {
     var  msg = "Player error: " + data.type + " - " + data.details;
     console.error(msg);
