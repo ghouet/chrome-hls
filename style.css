@@ -1,6 +1,48 @@
-body{
+html, body{
   background-color:black;
+  height: 100%;
+  margin: 0px;
 }
+
+html { 
+  overflow-y: hidden; 
+}
+
+#container {
+  height: 100%;
+  display: flex;
+  align-items: center;
+}
+
+#player {
+  flex: 0 0 80%;
+  height: 100%
+}
+
+video {
+  height: 100%;
+}
+
+#chat {
+  flex: 1;
+  display: flex;
+  height: 100%;
+  flex-direction: column;
+}
+
+iframe {
+  height: 100%
+}
+
+.twitch_mode {
+  width: 100%;
+}
+
+/* .twitch_mode {
+  flex: 0 0 80%;
+  height: 100%;
+  width: 100%;
+} */
 
 .native_mode{
   position: absolute;
